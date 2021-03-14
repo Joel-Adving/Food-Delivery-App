@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { Grid } from '@material-ui/core'
+import Header from './components/Header'
+import Content from './components/Content'
+import { makeStyles } from '@material-ui/core/styles'
+import CampaignCard from './components/CampaignCard'
+import { useMediaQuery } from '@material-ui/core'
+import NavBar from './components/NavBar'
+
+const useStyles = makeStyles({
+  root: {},
+})
 
 function App() {
+  const classes = useStyles()
+  const isActive = useMediaQuery('(max-width: 600px)')
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Grid className={classes.root} container direction="column">
+      <Header />
+      <Grid container justify="center">
+        <Grid xs={10} sm={5}>
+          <CampaignCard />
+        </Grid>
+      </Grid>
+      <Grid item container justify="center">
+        <Grid item container xs={10} sm={5} md={6} lg={7}>
+          <Grid item xs={1} />
+          <Content />
+          <Grid item xs={1} />
+        </Grid>
+      </Grid>
+      {isActive && <NavBar />}
+    </Grid>
+  )
 }
 
-export default App;
+export default App
