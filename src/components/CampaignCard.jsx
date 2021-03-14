@@ -21,14 +21,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const CampaignCard = () => {
+const CampaignCard = (props) => {
   const classes = useStyles()
   return (
     <Grid>
       <Card className={classes.root}>
         <Box>
           <Typography className={classes.title} color="textSecondary">
-            Dela till dina vänner så får du nästa leverans helt gratis!
+            {props.text}
           </Typography>
         </Box>
       </Card>
